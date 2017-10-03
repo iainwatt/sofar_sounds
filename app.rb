@@ -6,7 +6,6 @@ require_relative 'models/models'
 require_relative 'lib/importers'
 
 
-
 class MyApp
 
     def perform_import 

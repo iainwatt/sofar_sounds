@@ -23,7 +23,7 @@ module Importers
                         City.create(v["song"]["city"].tap { |c| c["song_id"] = song_id; c["city_id"] = c["id"]; c.delete "id"}) if v["song"]["city_id"] && v["song"]["city"] && City.find(city_id: v["song"]["city_id"]).nil?
                         artist = v["song"]["artist"].tap { |c| c["song_id"] = song_id; c["artist_id"] = c["id"]; c.delete "id"} if v["song"]["artist_id"]
                         Artist.create(artist) if v["song"]["artist"] && Artist.find(artist_id: artist["artist_id"]).nil?
-                        song = v["song"].tap { |s| s["song_id"] = s["id"]; s.delete "id"; s.delete("artist") if s.key?("artist"); s.delete("city") if s.key?("city") } if v["song"]["id"]
+                        song = v["song"].tap { |s| s["song_id"] = s["id"]; s["video_uid"] = v["video_uid"]; s.delete "id"; s.delete("artist") if s.key?("artist"); s.delete("city") if s.key?("city") } if v["song"]["id"]
                         Song.create(song) if Song.find(song_id: song["song_id"]).nil?
                     end 
                 rescue Exception => e 

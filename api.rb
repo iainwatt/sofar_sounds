@@ -5,7 +5,7 @@ class SofarApi < Grape::API
     format :json
 
     helpers do
-        
+        # ...
     end
 
     get '/' do
