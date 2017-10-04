@@ -4,13 +4,9 @@ require 'json'
 class SofarApi < Grape::API
     format :json
 
-    helpers do
-        # ...
-    end
 
     get '/' do
-        JSON.pretty_generate(Application.about)
-        # {message: 'Welcome to Sofar Sounds Events Api'}
+        {message: 'Welcome to Sofar Sounds Events Api'}
     end
 
     get '/videos' do 
@@ -21,7 +17,7 @@ class SofarApi < Grape::API
 
     get '/songs' do 
         Song.all.map do |s|
-             s.to_hash
+            s.to_hash
         end 
     end 
 
@@ -35,6 +31,17 @@ class SofarApi < Grape::API
         City.all.map do |c|
             c.to_hash
         end 
+    end 
+
+    get '/import' do 
+        response = false
+        if params.key?("url")
+            response = Application.perform_import(params["url"]) 
+        else
+            response = Application.perform_import 
+        end
+        response = "no import performed" if !response
+        {message: response} 
     end 
 
 

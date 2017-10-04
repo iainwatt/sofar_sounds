@@ -1,12 +1,30 @@
 
 module Importers 
     require 'rest-client'
+    require 'uri'
     class VideoData
 
-        def self.import 
+        def self.get_api_data(url)
+            videos = false 
+            begin 
+               videos = JSON.parse(RestClient.get(url))
+            rescue Exception => e
+                puts "something went wrong getting videos"
+            end 
+            videos
+        end 
+
+        def self.import(url=nil)
+            get_videos_url = "https://s3-eu-west-1.amazonaws.com/sofar-eu-1/video_data.json"
+            get_videos_url = url if !url.nil?
+
+            return false if !url.is_a?(String) || !(url =~ URI::regexp(%w(http https)))
+
             print "importing data "
             3.times { sleep(0.5); print '.' }
-            videos = JSON.parse(RestClient.get("https://s3-eu-west-1.amazonaws.com/sofar-eu-1/video_data.json"))
+
+            videos = [self.get_api_data(url)]
+            return false if !videos || !videos.is_a?(Array)
 
             # ---------------------------- #
             # we do this as setting primary key is restricted by default 
@@ -15,6 +33,7 @@ module Importers
             Song.unrestrict_primary_key
             City.unrestrict_primary_key
             # ---------------------------- #
+            
             videos.each do |v|
                 begin 
                     song_id = (v.key?("song") && v["song"]["id"]) ? v["song"]["id"] : nil
