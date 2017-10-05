@@ -1,0 +1,113 @@
+# run rubocop --auto-gen-config for list of error in file
+# run rubocop to work
+
+AllCops:
+  DisabledByDefault: true
+
+
+Layout/ExtraSpacing:
+  Enabled: true
+
+Layout/SpaceAroundEqualsInParameterDefault:
+  EnforcedStyle: no_space
+  Enabled: true
+
+Layout/SpaceAroundOperators:
+  Enabled: true
+
+Layout/SpaceInsideBlockBraces:
+  Enabled: true
+
+Layout/TrailingWhitespace:
+  Enabled: true
+
+Lint/RescueException:
+  Enabled: true
+
+Lint/UselessAssignment:
+  Enabled: true
+
+Metrics/AbcSize:
+  Max: 82
+
+Metrics/CyclomaticComplexity:
+  Max: 21
+
+Metrics/LineLength:
+  Max: 221
+
+Metrics/MethodLength:
+  Max: 32
+
+Metrics/PerceivedComplexity:
+  Max: 21
+
+Style/ColonMethodCall:
+  Enabled: true
+
+Style/ConditionalAssignment:
+  Enabled: true
+
+Style/GuardClause:
+  Enabled: true
+
+Style/OrAssignment:
+ Enabled: true
+
+Style/PercentLiteralDelimiters:
+  Enabled: true
+
+Style/RedundantReturn:
+  Enabled: true
+
+Style/Semicolon:
+  Enabled: true
+
+Style/SignalException:
+  Enabled: true
+
+Style/StringLiterals:
+  Enabled: true
+
+
+# --------------------------- UNWANTED OPTIONS --------------------------- #
+# Layout/IndentationWidth:
+#   Enabled: false
+
+# Layout/EmptyLines:
+#   Enabled: true
+
+# Layout/EmptyLinesAroundBlockBody:
+#   Enabled: true
+
+# Layout/EmptyLinesAroundClassBody:
+#    Enabled: true
+
+# Layout/IndentationWidth:
+#   Enabled: true
+
+# Layout/LeadingCommentSpace:
+#   Enabled: true
+
+# Layout/SpaceAfterSemicolon:
+#   Enabled: true
+
+# Layout/TrailingBlankLines:
+#   Enabled: true
+
+# Layout/SpaceInsideHashLiteralBraces:
+#   Enabled: true
+  # maybe
+
+# Style/AsciiComments:
+#   Enabled: true
+
+# Style/BlockComments:
+#   Enabled: true
+
+# Style/Documentation:
+#   Enabled: true
+
+# Style/TernaryParentheses:
+#   Enabled: true
+# --------------------------- UNWANTED OPTIONS --------------------------- #

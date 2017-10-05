@@ -14,7 +14,7 @@ namespace :db do
     end
 
     desc 'Creates a new database based on the variables in .env'
-    task :create => :environment do
+    task :create, :environment do
         check_command_exists 'createdb'
         puts 'Creating database...'
         # Here we make sure to give feedback if the creation was successfull
@@ -22,7 +22,7 @@ namespace :db do
     end
 
     desc 'Drops the database specified in the variables in .env'
-    task :drop => :environment do
+    task :drop, :environment do
         check_command_exists 'dropdb'
         puts 'Dropping database...'
         # Here we make sure to give feedback if the dropping was successfull
@@ -31,7 +31,7 @@ namespace :db do
 
     # Here we just invoke both tasks, one after the other
     desc 'Resets our database by dropping and creating it again.'
-    task :reset => :environment do
+    task :reset, :environment do
         Rake::Task['db:drop'].invoke
         Rake::Task['db:create'].invoke
     end

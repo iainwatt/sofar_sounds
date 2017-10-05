@@ -8,7 +8,7 @@ class Song < Sequel::Model
 end
 
 class Artist < Sequel::Model
-    one_to_many :song 
+    one_to_many :song
 end
 
 class Video < Sequel::Model
