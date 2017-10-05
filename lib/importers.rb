@@ -15,15 +15,14 @@ module Importers
         end
 
         def self.import(url=nil)
-            get_videos_url = 'https://s3-eu-west-1.amazonaws.com/sofar-eu-1/video_data.json'
-            get_videos_url = url unless url.nil?
+            url ||= 'https://s3-eu-west-1.amazonaws.com/sofar-eu-1/video_data.json'
 
             return false if !url.is_a?(String) || (url !~ URI.regexp(%w(http https)))
 
             print 'importing data '
             3.times { sleep(0.5); print '.' }
 
-            videos = [get_api_data(url)]
+            videos = get_api_data(url)
             return false if !videos || !videos.is_a?(Array)
 
             # ---------------------------- #
@@ -54,3 +53,5 @@ module Importers
 
     end # VideoData end
 end # Importers end
+
+# Matchstick Men

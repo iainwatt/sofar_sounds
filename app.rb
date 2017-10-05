@@ -1,5 +1,6 @@
 require 'sequel'
 require 'rest-client'
+require 'ruby-prof'
 
 require_relative 'lib/initializers/database'
 require_relative 'models/models'
@@ -10,6 +11,11 @@ class MyApp
     def perform_import
         Importers::VideoData.import
     end
+    # result = RubyProf.profile do
+    #     # code to profile
+    # end
+    # printer = RubyProf::GraphPrinter.new(result)
+    # printer.print(STDOUT, {})
 
     def slowly
         yield.each_char { |c| putc c; $stdout.flush; sleep 0.05 };0
